@@ -683,7 +683,7 @@ static switch_status_t consumer_read_frame_callback(switch_core_session_t *sessi
 	if (switch_true(bridge_uuid_wait)) {
 		const char *bridge_uuid = switch_channel_get_variable(channel, "fifo_bridge_uuid");
 
-		if (strcasecmp(*bridge_uuid, "undef") && check_caller_outbound_call(bridge_uuid)) {
+		if (strcasecmp(bridge_uuid, "undef") && check_caller_outbound_call(bridge_uuid)) {
 			return SWITCH_STATUS_BREAK;
 		}
 		return SWITCH_STATUS_SUCCESS;
@@ -3106,7 +3106,7 @@ SWITCH_STANDARD_APP(fifo_function)
 
 				/* Handle predestined calls, including calls from the ringall strategy */
 				if ((varval = switch_channel_get_variable(channel, "fifo_bridge_uuid"))) {
-					if (switch_true(check_wait) && !strcasecmp(*varval, "undef")) {
+					if (switch_true(check_wait) && !strcasecmp(varval, "undef")) {
 						continue;
 					}
 
