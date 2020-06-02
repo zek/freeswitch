@@ -3134,6 +3134,10 @@ SWITCH_STANDARD_APP(fifo_function)
 							continue;
 						}
 					}
+
+					if (pop && switch_true(check_wait)) {
+						switch_channel_set_variable(channel, "fifo_bridge_uuid", "undef");
+					}
 				}
 
 				if (!pop && (varval = switch_channel_get_variable(channel, "fifo_target_skill"))) {
