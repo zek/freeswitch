@@ -683,7 +683,7 @@ static switch_status_t consumer_read_frame_callback(switch_core_session_t *sessi
 	if (switch_true(bridge_uuid_wait)) {
 		const char *bridge_uuid = switch_channel_get_variable(channel, "fifo_bridge_uuid");
 
-		if (strcasecmp(bridge_uuid, "undef") && check_caller_outbound_call(bridge_uuid)) {
+		if (!strcasecmp(bridge_uuid, "undef") && check_caller_outbound_call(bridge_uuid)) {
 			return SWITCH_STATUS_BREAK;
 		}
 		return SWITCH_STATUS_SUCCESS;
